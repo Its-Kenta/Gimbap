@@ -1,5 +1,3 @@
-# gimbap
-
 # Gimbap - 김밥
 A small utility using [Gum](https://github.com/charmbracelet/gum) to prettify [C3's](https://github.com/c3lang/c3c) build system and to complement my laziness. Now created in Crystal!
 
