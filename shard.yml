@@ -1,0 +1,13 @@
+name: gimbap
+version: 0.1.0
+
+authors:
+  - kenta yuniper@pm.me
+
+targets:
+  gimbap:
+    main: src/gimbap.cr
+
+crystal: 1.6.0
+
+license: MIT
