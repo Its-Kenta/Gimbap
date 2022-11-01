@@ -1,17 +1,34 @@
 # Gimbap - 김밥
-A small utility using [Gum](https://github.com/charmbracelet/gum) to prettify [C3's](https://github.com/c3lang/c3c) build system and to complement my laziness.
+A small utility using [Gum](https://github.com/charmbracelet/gum) to prettify [C3's](https://github.com/c3lang/c3c) build system and to complement my laziness. Now created in Crystal!
 
 It’s small, cheap, delicious and never disappoints!
 
-## Setup
-**1.** Clone Gimbap and give it executable permissions.
+## Installation
+
+**1.** Download the pre-built binary (linux only) or Clone Gimbap and build it from source.
+
+**1.5 - Optional** Place Gimbap in /usr/bin (or /usr/local/bin - depending on your distro) or add it to your path.
 
 **2.** Install [Gum](https://github.com/charmbracelet/gum).
 
-**3.** Run Gimbap from terminal in the directory where you have your C3 project.
+## Usage
 
-**4.** Enjoy your tasty Gimbap!
+**1.** Run Gimbap from terminal in the directory where you have your C3 project.
 
-## Disclaimer
-This tool shouldn't be taken seriously, honestly... It's just a small fun project I've done for myself with the required parameters I normally use.
-You can always change them yourself if you feel like ever using this small tool.
+**2.** Enjoy your tasty Gimbap!
+
+## Development
+
+Go ham! Or don't. This project should never be taken seriously.
+
+## Contributing
+
+1. Fork it (<https://github.com/your-github-user/gimbap/fork>)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+## Contributors
+
+- [Kenta](https://github.com/Its-Kenta) - creator and maintainer
