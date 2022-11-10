@@ -1,32 +1,46 @@
-system "gum style --foreground 212 --border-foreground 212 --border double --align center --width 50 --margin '1 2' --padding '2 4' 'Welcome to 김밥!' 'What are we building today?'"
-type = %x(gum choose "Build for Release" "Build for Debug" "Run Only" "Run Built Executable" "Clean Up")
+require "toml"
+require "colorize"
+require "option_parser"
 
-case type
+def return_err
+  puts "#{"ERROR:".colorize(:black).on(:red)} Configuration file (gimbap.toml) was not found! Please create the configuration file and ensure you have added all necessary fields!"
+  exit(1)
+end
 
-when .includes?("Release")
-  system `gum spin --spinner line --title "Building C3 Project for Release..." -- c3c build -O3 --fast`
-  `echo '{{ Bold "Release Build Finished! Enjoy!" }}' \
-  | gum format -t template`
+def read_and_parse : Hash
+  contents_from_toml = Hash(String, TOML::Type).new
+  if File.exists?("gimbap1.toml") 
+    content = File.read("gimbap1.toml")
+    contents_from_toml = TOML.parse(content)
+  else
+    return_err()
+  end
+  
+  config = contents_from_toml["config"].as(Hash)
+end
 
-when .includes?("Debug")
-  system `gum spin --spinner line --title "Building C3 Project for Debug..." -- c3c build --safe --debug-log`
-  `echo '{{ Bold "Debug Build Finished! Enjoy!" }}' \
-  | gum format -t template`
+OptionParser.parse do |parser|
+    config = read_and_parse()
 
-when .includes?("Run")
-  system `gum spin --spinner line --title "Running C3 Project..." -- c3c run`
-	`echo '{{ Bold "Come back soon, alright?" }}' \
-    | gum format -t template`
-
-when .includes?("Clean")
-  system `gum spin --spinner line --title "Cleaning up!" -- find . -type f -executable -exec rm {} + 
-	rm -r build`
-  `echo '{{ Bold "다했다!" }}' \
-  | gum format -t template`
-
-when .includes?("Executable")
-  system `gum spin --spinner line --title "Searching..." -- find . -type f -executable -exec '{}' ';'`
-  `echo '{{ Bold "Did it taste good?" }}' \
-  | gum format -t template`
-
+    parser.banner = "Welcome to #{"김밥!".colorize.bold} How can I help?"
+    
+    parser.on "--v", "--version", "Show the current version" do
+      puts "Version 0.1.0"
+      exit
+    end
+  
+    parser.on "--h", "--help", "Show Gimbap commands" do
+      puts parser
+      exit
+    end
+  
+    parser.on "--b", "--build", "Build project" do
+      puts "Gimbap: Building a #{config["language"].to_s.capitalize} Project...".colorize.bold
+      system `echo #{config["language"]} #{config["mainfile"]} #{config["flag"]}`
+  
+      if $?.success? 
+        puts "#{"Gimbap: Build for #{config["language"].to_s.capitalize} Finished! Enjoy!".colorize.bold}"
+      end
+      exit
+    end
 end

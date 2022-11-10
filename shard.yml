@@ -8,6 +8,11 @@ targets:
   gimbap:
     main: src/gimbap.cr
 
-crystal: 1.6.0
+dependencies:
+  toml:
+    github: crystal-community/toml.cr
+    branch: master
+
+crystal: 1.6.1
 
 license: MIT

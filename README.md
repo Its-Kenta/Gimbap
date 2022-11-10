@@ -1,5 +1,5 @@
 # Gimbap - 김밥
-A small utility using [Gum](https://github.com/charmbracelet/gum) to prettify [C3's](https://github.com/c3lang/c3c) build system and to complement my laziness. Now created in Crystal!
+A small build build system and to complement my laziness.
 
 It’s small, cheap, delicious and never disappoints!
 
@@ -7,15 +7,40 @@ It’s small, cheap, delicious and never disappoints!
 
 **1.** Download the pre-built binary (linux only) or Clone Gimbap and build it from source.
 
-**1.5 - Optional** Place Gimbap in /usr/bin (or /usr/local/bin - depending on your distro) or add it to your path.
-
-**2.** Install [Gum](https://github.com/charmbracelet/gum).
+**2.** Place Gimbap in /usr/bin (or /usr/local/bin - depending on your distro) or add it to your path.
 
 ## Usage
 
-**1.** Run Gimbap from terminal in the directory where you have your C3 project.
+**1.** Create a Gimbap config file named `gimbap.toml`
 
-**2.** Enjoy your tasty Gimbap!
+**2.** Gimbap config file requires the following fields to successfully build project:
+```toml
+[config]
+language = ""
+mainfile = ""
+flag = ""
+```
+
+### **The following flags are:**
+
+**language** - The programming language used in the project. Meaning the binary name of the language or compiler used to build your project e.g. `gcc`, `rust`, `cargo` or `g++` etc.
+
+**mainfile** - The entry point of your program.
+
+**flag** - Compiler flags
+
+Here is an example config file:
+
+```toml
+[config]
+language = "nelua"
+mainfile = "src/main.nelua"
+flag = "--cflags=\"-L.\""
+```
+
+**3.** Run the Gimbap build command `gimbap --b`
+
+**4.** Enjoy!
 
 ## Development
 
